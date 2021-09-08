@@ -4,7 +4,7 @@
 
 ## ERD
 
-![](IMG/ERD.png)
+![](public/assets/IMG/ERD.png)
 
 ---
 

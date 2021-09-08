@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "RNJesus_development",
+    "database": "RNJesus",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
