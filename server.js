@@ -48,6 +48,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 })
 
 app.use('/auth', require('./controllers/auth'))
+app.use('/boardGame', require('./controllers/boardGame'))
 
 const PORT = process.env.PORT || 3000
 const server = app.listen(PORT, () => {
