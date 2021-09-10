@@ -13,8 +13,8 @@ const fetchData = async () => {
 			min_age: e.min_age,
 			min_players: e.min_players,
 			max_players: e.max_players,
-			min_playTime: e.min_playtime,
-			max_playTime: e.max_playtime,
+			min_playtime: e.min_playtime,
+			max_playtime: e.max_playtime,
 			description_preview: e.description_preview,
 			createdAt: new Date().toISOString(),
 			updatedAt: new Date().toISOString()
@@ -27,7 +27,7 @@ const fetchData = async () => {
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		let fetch = await fetchData()
-		await queryInterface.bulkInsert('boardGames', seedArray, {})
+		await queryInterface.bulkInsert('Boardgames', seedArray, {})
 		/**
 		 * Add seed commands here.
 		 *
@@ -40,7 +40,7 @@ module.exports = {
 	},
 
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkDelete('boardGames', null, {})
+		await queryInterface.bulkDelete('Boardgames', null, {})
 
 		/**
 		 * Add commands to revert seed here.

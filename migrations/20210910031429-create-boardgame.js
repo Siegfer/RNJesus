@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable('boardGames', {
+		await queryInterface.createTable('Boardgames', {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -9,7 +9,7 @@ module.exports = {
 				type: Sequelize.INTEGER
 			},
 			name: {
-				type: Sequelize.STRING(5000)
+				type: Sequelize.STRING
 			},
 			min_age: {
 				type: Sequelize.INTEGER
@@ -20,10 +20,10 @@ module.exports = {
 			max_players: {
 				type: Sequelize.INTEGER
 			},
-			min_playTime: {
+			min_playtime: {
 				type: Sequelize.INTEGER
 			},
-			max_playTime: {
+			max_playtime: {
 				type: Sequelize.INTEGER
 			},
 			description_preview: {
@@ -40,6 +40,6 @@ module.exports = {
 		})
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable('boardGames')
+		await queryInterface.dropTable('Boardgames')
 	}
 }
