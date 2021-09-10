@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 	Boardgame.init(
 		{
 			name: DataTypes.STRING,
+			image_url: DataTypes.STRING,
 			min_age: DataTypes.INTEGER,
 			min_players: DataTypes.INTEGER,
 			max_players: DataTypes.INTEGER,

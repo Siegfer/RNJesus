@@ -15,6 +15,7 @@ const fetchData = async () => {
 		data.games.map((e) => {
 			let dataObject = {
 				name: e.name,
+				image_url: e.image_url,
 				min_age: e.min_age,
 				min_players: e.min_players,
 				max_players: e.max_players,
