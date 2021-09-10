@@ -1,6 +1,7 @@
 'use strict'
 const axios = require('axios')
-const API_URL = process.env.API_URL
+const API_URL =
+	'https://api.boardgameatlas.com/api/search?limit=100&client_id=s2XQYtohOX'
 
 const seedArray = []
 const fetchData = async () => {

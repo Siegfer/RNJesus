@@ -6,9 +6,9 @@ const { User, Boardgame, Favoritelist } = require('../models')
 router.get('/', async (req, res) => {
 	try {
 		const allGames = await Boardgame.findAll({})
-		console.log('ALL Board Games:', allGames)
-		const parsedGames = allGames.map((u) => u.toJSON())
-		res.render('boardGame/index', { boardgames: parsedGames })
+		// console.log('ALL Board Games:', allGames)
+		// const parsedGames = allGames.map((u) => u.toJSON())
+		res.render('boardGame/index', { games: allGames })
 	} catch (err) {
 		console.log(err)
 	}

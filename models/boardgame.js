@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			models.Boardgame.belongsTo(models.User, { foreignKey: 'userId' })
+			models.Boardgame.belongsToMany(models.User, {
+				through: 'favoritelist',
+				foreignKey: 'userId'
+			})
 		}
 	}
 	Boardgame.init(

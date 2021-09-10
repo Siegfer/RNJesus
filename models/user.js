@@ -1,7 +1,9 @@
 'use strict'
+
 const bcrypt = require('bcrypt')
 
 const { Model } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
 		/**
@@ -11,9 +13,13 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			models.User.hasMany(models.Boardgame)
+			models.User.belongsToMany(models.Boardgame, {
+				through: 'favoritelist',
+				foreignKey: 'userId'
+			})
 		}
 	}
+
 	User.init(
 		{
 			name: {

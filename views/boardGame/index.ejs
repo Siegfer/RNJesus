@@ -1,1 +1,23 @@
-<h2>Homepage</h2>
+<% for (let i=0; i < games.length; i++) { %>
+    <% let g = games[i] %>
+        <!-- card 1 -->
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <h2>
+                        <%= g.name %>
+                    </h2>
+                    <p>minimum age: <%= g.min_age %>
+                    </p>
+                    <p>minimum/maximum players: between <%= g.min_players %> and <%= g.max_players %>
+                    </p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+            <div class="face face2">
+                <h2>
+                   game length: between: between  <%= g.min_playtime %> & <%= g.max_playtime %> minutes
+                </h2>
+            </div>
+        </div>
+        <% } %>
