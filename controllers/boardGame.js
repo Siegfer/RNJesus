@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const passport = require('../config/ppConfig')
 
-const { User } = require('../models')
+const { User, boardgame, usergamelist } = require('../models')
+
+router.get('/', (req, res) => {
+	res.render('boardgames')
+})
 
 module.exports = router
