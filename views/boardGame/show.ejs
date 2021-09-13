@@ -1,0 +1,11 @@
+<h2><%= g.name %></h2>
+
+<img src="<%= g.image_url %>" />
+
+<div>
+	<h3>Description:</h3>
+	<p><%= %></p>
+	<% pokedata.types.forEach(function(t){ %>
+	<h4 class="<%= t.type.name %>"><%= t.type.name %></h4>
+	<% }); %>
+</div>

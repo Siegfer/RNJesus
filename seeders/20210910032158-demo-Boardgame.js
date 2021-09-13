@@ -3,7 +3,7 @@ const axios = require('axios')
 const API_URL =
 	'https://api.boardgameatlas.com/api/search?limit=100&client_id=s2XQYtohOX'
 
-const seedArray = []
+const dataArray = []
 const fetchData = async () => {
 	let dataUrl = API_URL
 	const { data } = await axios.get(dataUrl)
@@ -20,15 +20,15 @@ const fetchData = async () => {
 			createdAt: new Date().toISOString(),
 			updatedAt: new Date().toISOString()
 		}
-		seedArray.push(dataObject)
+		dataArray.push(dataObject)
 	})
-	return seedArray
+	return dataArray
 }
 
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
 		let fetch = await fetchData()
-		await queryInterface.bulkInsert('Boardgames', seedArray, {})
+		await queryInterface.bulkInsert('Boardgames', dataArray, {})
 		/**
 		 * Add seed commands here.
 		 *

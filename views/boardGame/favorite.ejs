@@ -1,4 +1,10 @@
+<h2>My Favorites</h2>
+<p><%= games.length %> games in my Fav. LIST!</p>
+<% games.forEach(g => { %>
 <div class="main">
-    <h1>Favorited Board Games</h1>
-           
+	<h3>
+		<a href="/boardGame/<%= g.name %> "> <%= g.name %> </a>
+	</h3>
 </div>
+
+<% }) %>

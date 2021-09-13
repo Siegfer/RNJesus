@@ -14,9 +14,6 @@ module.exports = {
 			boardgameId: {
 				type: Sequelize.INTEGER
 			},
-			categoryId: {
-				type: Sequelize.INTEGER
-			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE
