@@ -10,12 +10,6 @@
 	</head>
 
 	<body>
-		<form method="GET" action="/boardGame">
-			<label for="search">Search Board Games by Name</label>
-			<input id="search" type="text" name="search" />
-			<input type="submit" />
-		</form>
-
 		<% for (let i=0; i < games.length; i++) { %> <% let g = games[i] %>
 		<!-- card 1 -->
 		<div class="card">
@@ -30,7 +24,6 @@
 						minutes <br />
 					</p>
 					<form action="boardGame/favorite/<%= g.id %> " method="post">
-						<a href="/show">Read More</a>
 					</form>
 				</div>
 			</div>

@@ -7,7 +7,7 @@ const { Boardgame, Favoritelist } = require('../models')
 //grab all boardgames from Database
 router.get('/', isLoggedIn, async (req, res) => {
 	try {
-		const allGames = await Boardgame.findAll({})
+		const allGames = await fetchData()
 		res.render('boardGame/index', { games: allGames })
 	} catch (err) {
 		console.log(err)
@@ -18,8 +18,8 @@ router.get('/', isLoggedIn, async (req, res) => {
 //grab all boardgames from Database for Favs
 router.get('/favorite', isLoggedIn, async (req, res) => {
 	try {
-		const allGames = await Boardgame.findAll({})
-		res.render('boardGame/favorite', { games: allGames })
+		const gamelist = await Boardgame.findAll({})
+		res.render('boardGame/favorite', { games: gamelist })
 	} catch (err) {
 		console.log(err)
 		res.render('error')
@@ -29,24 +29,24 @@ router.get('/favorite', isLoggedIn, async (req, res) => {
 // GET search  /boardGame/1
 router.get('/search', isLoggedIn, async (req, res) => {
 	let name = req.query.search
-	let game = await fetchDetail(name)
-	res.render('boardGame/details', { game: game[0] })
+	let games = await fetchDetail(name)
+	res.render('boardGame/details', { games: games[0] })
 })
 
-router.get('/details/:idx', isLoggedIn, async (req, res) => {
-	console.log(req.params.idx)
-	try {
-		const game = {}
-		const thisGame = await Boardgame.findOne({
-			where: { id: req.params.idx }
-		})
-		game.Boardgame = thisGame
-		res.render('boardGame/details', game)
-	} catch (err) {
-		console.log(err)
-		res.render('error')
-	}
-})
+// router.get('/details/:idx', isLoggedIn, async (req, res) => {
+// 	console.log(req.params.idx)
+// 	try {
+// 		const game = {}
+// 		const thisGame = await Boardgame.findOne({
+// 			where: { id: req.params.idx }
+// 		})
+// 		game.Boardgame = thisGame
+// 		res.render('boardGame/details', game)
+// 	} catch (err) {
+// 		console.log(err)
+// 		res.render('error')
+// 	}
+// })
 
 // POST - receive the name of a board game and add it to the database
 router.post('/', async (req, res) => {
