@@ -15,7 +15,6 @@ body {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	/* font-size: 1em; */
 }
 
 #linkcontainer {
@@ -88,7 +87,8 @@ body {
 	border-radius: 50%;
 	top: 5px;
 	left: 40%;
-	transform: scale(0.25, 0.25);
+	transform: rotatex(-90deg);
+	/* transform: scale(0.05, 0.05); */
 	background: transparent;
 	border: 2px solid #013d4a;
 	text-align: center;

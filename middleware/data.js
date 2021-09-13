@@ -14,9 +14,7 @@ const fetchData = async () => {
 			max_players: e.max_players,
 			min_playtime: e.min_playtime,
 			max_playtime: e.max_playtime,
-			description_preview: e.description_preview,
-			createdAt: new Date().toISOString(),
-			updatedAt: new Date().toISOString()
+			description_preview: e.description_preview
 		}
 		dataArray.push(dataObject)
 	})
@@ -39,30 +37,56 @@ const fetchCategory = async () => {
 }
 
 const detailArray = []
-const fetchDetail = async (req, res) => {
-	let name = req.query.search
-	let dataUrl = `https://api.boardgameatlas.com/api/search?name=${name}&limit=1&pretty=true&client_id=s2XQYtohOX`
-	const { data } = await axios.get(dataUrl)
-	data.games.map((e) => {
-		let dataObject = {
-			name: e.name,
-			url: e.url,
-			image_url: e.image_url,
-			min_players: e.min_players,
-			max_players: e.max_players,
-			min_playtime: e.min_playtime,
-			max_playtime: e.max_playtime,
-			min_age: e.min_age,
-			description: e.description,
-			num_user_rating: e.number_user_ratings,
-			user_rating: e.average_user_rating
-		}
-		console.log(dataObject)
-		detailArray.push(dataObject)
-	})
-	return categoryArray
+const fetchDetail = async (name) => {
+	try {
+		let dataUrl = `https://api.boardgameatlas.com/api/search?name=${name}&limit=1&pretty=true&client_id=s2XQYtohOX`
+		const { data } = await axios.get(dataUrl)
+		data.games.map((e) => {
+			let description = e.description
+			if (e.description.includes('<p>')) {
+				description = description.replace(/<p>/g, '')
+			}
+			if (e.description.includes('</p>')) {
+				description = description.split('</p>')[0]
+			}
+			if (e.description.includes('<em>')) {
+				description = description.replace(/<em>/g, '')
+			}
+			if (e.description.includes('</em>')) {
+				let array = description.split('</em>')
+				description = array.join('')
+				// console.log('</EM>', array)
+				console.log('NEW DESCRIPTION AFTER EM', description)
+			}
+			if (e.description.includes('<br />')) {
+				let array = description.split('<br />')
+				description = array.join('')
+				console.log('NEW DESCRIPTION AFTER BR', description)
+			}
+			if (e.description.includes('&quot')) {
+				description = description.replace(/&quot/g, '')
+			}
+			let dataObject = {
+				name: e.name,
+				url: e.url,
+				image_url: e.image_url,
+				min_players: e.min_players,
+				max_players: e.max_players,
+				min_playtime: e.min_playtime,
+				max_playtime: e.max_playtime,
+				min_age: e.min_age,
+				description: description,
+				user_rating: e.average_user_rating
+			}
+			detailArray.push(dataObject)
+		})
+		console.log(detailArray)
+		return detailArray
+	} catch (error) {
+		console.log('error', error)
+	}
 }
-
+// .replace(/(<([^>]+)>)/gi, '')
 module.exports = {
 	fetchDetail,
 	fetchCategory,

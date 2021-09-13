@@ -14,27 +14,29 @@
 	</head>
 
 	<body>
-		<form method="GET" action="/boardGame">
+		<form method="GET" action="/boardGame/search">
 			<label for="search">Search Board Games by Name</label>
 			<input id="search" type="text" name="search" />
 			<input type="submit" />
 		</form>
-
 		<% for (let i=0; i < games.length; i++) { %> <% let g = games[i] %>
 		<!-- card 1 -->
 		<div class="card">
 			<div class="face face1">
 				<div class="content">
-					<h3><%= g.name %></h3>
 					<p>
+						<span><%= g.name %></span> <br />
 						Age: <%= g.min_age %>+ <br />
 						Total players: between <%= g.min_players %> & <%= g.max_players %>
 						<br />
 						length: between: <%= g.min_playtime %> & <%= g.max_playtime %>
 						minutes <br />
 					</p>
-					<form action="boardGame/favorite/<%= g.id %> " method="post">
-						<input type="submit" value="add favorite" />
+
+					<form method="POST" action="/boardGame/<%= g.id %>">
+						<button type="submit" value="<%= g.id %>" name="addGame" id="bttn">
+							Add to your Favorite!
+						</button>
 					</form>
 					<a href="/show">Read More</a>
 				</div>
