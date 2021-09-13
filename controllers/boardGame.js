@@ -31,26 +31,7 @@ router.get('/search', isLoggedIn, async (req, res) => {
 	let name = req.query.search
 	let game = await fetchDetail(name)
 	res.render('boardGame/details', { game: game[0] })
-	// redirect to your game show url
-	// res.redirect('boardGAme/details/')
-
-	/* 
-	QUIN'S THOUGHTS ON HOW THIS COULD GO
-	1: search your database, redirect to game detail page if it's there
-	2: if it's not in  your database, then hit the api
-	3: if it comes back from the api, just add it to your database, and then redirect to the show page of the game with the shiny new id that it got from being added to your postgres table
-	*/
 })
-
-/* 
-router.post('/search', isLoggedIn, async (req, res) => {
-	const name = req.body.search
-
-
-	res.redirect(show page of the game that you find in the database)
-})
-
-*/
 
 router.get('/details/:idx', isLoggedIn, async (req, res) => {
 	console.log(req.params.idx)
