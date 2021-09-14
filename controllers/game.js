@@ -42,6 +42,20 @@ router.get('/search', isLoggedIn, async (req, res) => {
 	res.render('game/details', { games: games[0] })
 })
 
+router.get('/details/:idx', isLoggedIn, async (req, res) => {
+	try {
+		const data = {}
+		const thisGame = await Boardgame.findOne({
+			where: { id: req.params.idx }
+		})
+		data.game = thisGame
+		res.render('game/details', data)
+	} catch (error) {
+		console.log(error)
+		res.render('error')
+	}
+})
+
 // adding association
 router.post('/:id', isLoggedIn, async (req, res) => {
 	try {
