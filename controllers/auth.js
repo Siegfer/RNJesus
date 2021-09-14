@@ -13,7 +13,7 @@ router.get('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-	req.logOut() // logs the user out of the session
+	req.logOut()
 	req.flash('success', 'Logging out... See you next time!')
 	res.redirect('/')
 })
@@ -29,8 +29,7 @@ router.post(
 )
 
 router.post('/signup', async (req, res) => {
-	// we now have access to the user info (req.body);
-	const { email, name, password } = req.body // goes and us access to whatever key/value inside of the object
+	const { email, name, password } = req.body
 	try {
 		const [user, created] = await User.findOrCreate({
 			where: { email },
@@ -38,7 +37,6 @@ router.post('/signup', async (req, res) => {
 		})
 
 		if (created) {
-			// if created, success and we will redirect back to / page
 			console.log(`----- ${user.name} was created -----`)
 			const successObject = {
 				successRedirect: '/',
@@ -47,12 +45,10 @@ router.post('/signup', async (req, res) => {
 			//
 			passport.authenticate('local', successObject)(req, res)
 		} else {
-			// Send back email already exists
 			req.flash('error', 'Email already exists')
-			res.redirect('/auth/signup') // redirect the user back to sign up page to try again
+			res.redirect('/auth/signup')
 		}
 	} catch (error) {
-		// There was an error that came back; therefore, we just have the user try again
 		console.log('**************Error')
 		console.log(error)
 		req.flash(

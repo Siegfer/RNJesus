@@ -21,6 +21,27 @@ const fetchData = async () => {
 	return dataArray
 }
 
+const gameArray = []
+const randomizeGame = async () => {
+	let dataUrl =
+		'https://api.boardgameatlas.com/api/search?random=true&client_id=s2XQYtohOX'
+	const { data } = await axios.get(dataUrl)
+	data.games.map((e) => {
+		let dataObject = {
+			name: e.name,
+			image_url: e.image_url,
+			min_age: e.min_age,
+			min_players: e.min_players,
+			max_players: e.max_players,
+			min_playtime: e.min_playtime,
+			max_playtime: e.max_playtime,
+			description_preview: e.description_preview
+		}
+		gameArray.push(dataObject)
+	})
+	return gameArray
+}
+
 const categoryArray = []
 const fetchCategory = async () => {
 	let dataUrl =
@@ -56,12 +77,10 @@ const fetchDetail = async (name) => {
 				let array = description.split('</em>')
 				description = array.join('')
 				// console.log('</EM>', array)
-				console.log('NEW DESCRIPTION AFTER EM', description)
 			}
 			if (e.description.includes('<br />')) {
 				let array = description.split('<br />')
 				description = array.join('')
-				console.log('NEW DESCRIPTION AFTER BR', description)
 			}
 			if (e.description.includes('&quot')) {
 				description = description.replace(/&quot/g, '')
@@ -79,15 +98,14 @@ const fetchDetail = async (name) => {
 			}
 			detailArray.push(dataObject)
 		})
-		console.log(detailArray)
 		return detailArray
 	} catch (error) {
 		console.log('error', error)
 	}
 }
-// .replace(/(<([^>]+)>)/gi, '')
 module.exports = {
 	fetchDetail,
 	fetchCategory,
-	fetchData
+	fetchData,
+	randomizeGame
 }

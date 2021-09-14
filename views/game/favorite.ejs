@@ -13,7 +13,9 @@
 				length: between: <%= g.min_playtime %> & <%= g.max_playtime %> minutes
 				<br />
 			</p>
-			<form action="game/favorite/<%= g.id %> " method="post"></form>
+			<form method="POST" action="/game/<%= g.id %>/?_method=DELETE">
+				<input type="submit" value="Delete" id="bttn" class="deletebttn" />
+			</form>
 		</div>
 	</div>
 	<div class="face face2">

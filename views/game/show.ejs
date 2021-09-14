@@ -1,2 +1,31 @@
-<h1>show page</h1>
-<%= searchGame.name %> <%= searchGame.description %>
+<link rel="stylesheet" href="/css/style.css" />
+
+<% for (let i=0; i < games.length; i++) { %> <% let g = games[i] %>
+<!-- card 1 -->
+<div class="card">
+	<div class="face face1">
+		<div class="content">
+			<p>
+				<span><%= g.name %></span> <br />
+				Age: <%= g.min_age %>+ <br />
+				Total players: between <%= g.min_players %> & <%= g.max_players %>
+				<br />
+				length: between: <%= g.min_playtime %> & <%= g.max_playtime %> minutes
+				<br />
+			</p>
+
+			<form method="POST" action="/game/<%= g.id %> ">
+				<button type="submit" value="<%= g.id %>" name="addGame" id="bttn">
+					Add to your Favorite!
+				</button>
+			</form>
+			<a class="readmore" href="/game/details/<%= g.id %>">Read More</a>
+		</div>
+	</div>
+	<div class="face face2">
+		<h2>
+			<img src="<%= g.image_url %>" width="200" height="200" />
+		</h2>
+	</div>
+</div>
+<% } %>

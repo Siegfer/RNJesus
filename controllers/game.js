@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const isLoggedIn = require('../middleware/isLoggedIn')
-const { fetchDetail, fetchCategory, fetchData } = require('../middleware/data')
+const { fetchDetail, randomizeGame } = require('../middleware/data')
 const { User, Boardgame, Favoritelist } = require('../models')
 
-//grab all boardgames from Database
+// grab all data from database
 router.get('/', isLoggedIn, async (req, res) => {
 	try {
-		// const allGames = await fetchData()
 		const allGames = await Boardgame.findAll({})
 		res.render('game/index', { games: allGames })
 	} catch (err) {
@@ -16,7 +15,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 	}
 })
 
-//grab all boardgames from Database for Favs
+// Grab data from favorite database link to user
 router.get('/favorite', isLoggedIn, async (req, res) => {
 	try {
 		const { id } = req.user.get()
@@ -35,13 +34,25 @@ router.get('/favorite', isLoggedIn, async (req, res) => {
 	}
 })
 
-// GET search
+// Search the API
 router.get('/search', isLoggedIn, async (req, res) => {
 	let name = req.query.search
 	let games = await fetchDetail(name)
 	res.render('game/details', { games: games[0] })
 })
 
+// randomize Game from API database
+router.get('/random', isLoggedIn, async (req, res) => {
+	try {
+		const allGames = await randomizeGame()
+		res.render('game/show', { games: allGames })
+	} catch (err) {
+		console.log(err)
+		res.render('error')
+	}
+})
+
+// display more details
 router.get('/details/:idx', isLoggedIn, async (req, res) => {
 	try {
 		const data = {}
@@ -74,6 +85,7 @@ router.post('/:id', isLoggedIn, async (req, res) => {
 	}
 })
 
+// adding data into database
 router.post('/', isLoggedIn, async (req, res) => {
 	try {
 		const { id } = req.user.get()
