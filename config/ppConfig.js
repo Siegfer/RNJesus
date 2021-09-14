@@ -1,13 +1,12 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-
 // Database
 const { User } = require('../models')
 
 const STRATEGY = new LocalStrategy(
 	{
-		usernameField: 'email', // looks for an email field as the username
-		passwordField: 'password' // looks for an password field as the password
+		usernameField: 'email',
+		passwordField: 'password'
 	},
 	async (email, password, cb) => {
 		try {
@@ -16,7 +15,7 @@ const STRATEGY = new LocalStrategy(
 			})
 
 			if (!user || !user.validPassword(password)) {
-				cb(null, false) // if no user or invalid password, return false
+				cb(null, false)
 			} else {
 				cb(null, user)
 			}
