@@ -6,6 +6,7 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('./config/ppConfig')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const { User, Boardgame } = require('./models')
 const methodOverride = require('method-override')
 
 const SECRET_SESSION = process.env.SECRET_SESSION
@@ -42,15 +43,35 @@ app.get('/', (req, res) => {
 	res.render('index')
 })
 
-app.get('/profile', isLoggedIn, (req, res) => {
-	const { id, name, email } = req.user.get()
-	res.render('profile', { id, name, email })
-})
+app.get('/profile', isLoggedIn, async (req, res) => {
+	try {
+		const { id, name, email } = req.user.get()
+		const currentUser = await User.findOne({
+			where: { id: id },
+			include: [Boardgame]
+		})
+		const parsedUser = currentUser.toJSON()
+		const parsedGame = parsedUser.Boardgames.map((game) => {
+			return game.toJSON()
+		})
 
-// app.get('/*', (req, res) => res.render('error'))
+		res.render('profile', { id, name, email, games: parsedGame })
+	} catch (error) {
+		console.log(error)
+		res.render('error')
+	}
+})
+// app.get('/profile', isLoggedIn, (req, res) => {
+// 	const { id, name, email } = req.user.get()
+// 	res.render('profile', { id, name, email })
+// })
+
+// app.get('/*', (req, res) => {
+// 	res.render('error')
+// })
 
 app.use('/auth', require('./controllers/auth'))
-app.use('/boardGame', require('./controllers/boardGame'))
+app.use('/game', require('./controllers/game'))
 
 const PORT = process.env.PORT || 3000
 const server = app.listen(PORT, () => {

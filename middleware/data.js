@@ -68,7 +68,6 @@ const fetchDetail = async (name) => {
 			}
 			let dataObject = {
 				name: e.name,
-				url: e.url,
 				image_url: e.image_url,
 				min_players: e.min_players,
 				max_players: e.max_players,

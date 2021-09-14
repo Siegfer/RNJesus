@@ -1,8 +1,7 @@
 'use strict'
 const axios = require('axios')
 const API_URL =
-	'https://api.boardgameatlas.com/api/search?limit=100&client_id=s2XQYtohOX'
-
+	'https://api.boardgameatlas.com/api/search?order_by=rank&ascending=false&client_id=s2XQYtohOX'
 const dataArray = []
 const fetchData = async () => {
 	let dataUrl = API_URL

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 			models.User.belongsToMany(models.Boardgame, {
-				through: 'favoritelist',
+				through: 'Favoritelist',
 				foreignKey: 'userId'
 			})
 		}
