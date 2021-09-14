@@ -76,7 +76,6 @@ const fetchDetail = async (name) => {
 			if (e.description.includes('</em>')) {
 				let array = description.split('</em>')
 				description = array.join('')
-				// console.log('</EM>', array)
 			}
 			if (e.description.includes('<br />')) {
 				let array = description.split('<br />')

@@ -132,7 +132,6 @@ router.delete('/:idx', isLoggedIn, async (req, res) => {
 		const removeItem = await Favoritelist.findOne({
 			where: { userId: id, boardgameId }
 		})
-		console.log('item been removed', removeItem)
 		await removeItem.destroy()
 
 		res.redirect('/profile')
