@@ -38,7 +38,7 @@ router.get('/favorite', isLoggedIn, async (req, res) => {
 router.get('/search', isLoggedIn, async (req, res) => {
 	let name = req.query.search
 	let games = await fetchDetail(name)
-	res.render('game/details', { games: games[0] })
+	res.render('game/searchDetails', { games: games[0] })
 })
 
 // randomize Game from API database

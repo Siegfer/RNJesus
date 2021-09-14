@@ -6,20 +6,14 @@
 	<div class="face face1">
 		<div class="content">
 			<p>
-				<span><%= g.name %></span> <br />
+				<span><%= g.name %></span>
+				<br />
 				Age: <%= g.min_age %>+ <br />
 				Total players: between <%= g.min_players %> & <%= g.max_players %>
 				<br />
 				length: between: <%= g.min_playtime %> & <%= g.max_playtime %> minutes
 				<br />
 			</p>
-
-			<form method="POST" action="/game/<%= g.id %> ">
-				<button type="submit" value="<%= g.id %>" name="addGame" id="bttn">
-					Add to your Favorite!
-				</button>
-			</form>
-			<a class="readmore" href="/game/details/<%= g.id %>">Read More</a>
 		</div>
 	</div>
 	<div class="face face2">

@@ -1,18 +1,18 @@
-<ul>
-	<li>
+<div id="main">
+	<ul>
 		<img src="<%= game.image_url %>" alt="" id="img" />
-	</li>
-	<br />
-	<li>Name: <%= game.name %></li>
-	<br />
-	<li><%= game.description %></li>
-	<br />
-	<li>Age: <%= game.min_age %>+</li>
-	<br />
-	<li>Min Players: <%= game.min_players %></li>
-	<br />
-	<li>Max Players: <%= game.max_players %></li>
-	<br />
-	<li>User Rating: <%= game.user_rating %></li>
-	<br />
-</ul>
+		<br />
+		<li id="list">Name: <%= game.name %></li>
+		<br />
+		<li id="list"><%= game.description %></li>
+		<br />
+		<li id="list">Age: <%= game.min_age %>+</li>
+		<br />
+		<li id="list">Min Players: <%= game.min_players %></li>
+		<br />
+		<li id="list">Max Players: <%= game.max_players %></li>
+		<br />
+		<li id="list">User Rating: <%= game.user_rating %></li>
+		<br />
+	</ul>
+</div>

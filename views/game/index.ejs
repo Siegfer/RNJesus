@@ -17,14 +17,13 @@
 				<br />
 				length: between: <%= g.min_playtime %> & <%= g.max_playtime %> minutes
 				<br />
+				<a class="readmore" href="/game/details/<%= g.id %>">Read More</a>
 			</p>
-
 			<form method="POST" action="/game/<%= g.id %> ">
 				<button type="submit" value="<%= g.id %>" name="addGame" id="bttn">
 					Add to your Favorite!
 				</button>
 			</form>
-			<a class="readmore" href="/game/details/<%= g.id %>">Read More</a>
 		</div>
 	</div>
 	<div class="face face2">
