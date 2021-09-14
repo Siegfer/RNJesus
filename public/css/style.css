@@ -22,22 +22,20 @@ span {
 	text-decoration: underline;
 }
 
-/* div {
-	color: teal;
-	background-color: #542815;
-	opacity: 0.85;
-} */
+div {
+	color: black;
+}
 #linkcontainer {
 	display: flex;
 }
 .container {
 	width: 1100px;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	grid-gap: 50px;
 	margin: 0 auto;
 	background-color: #542815;
-	opacity: 0.75;
+	opacity: 0.8;
 }
 .container .card {
 	position: relative;
